@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/bootstrap-4.6.2-dist/css/staff.css">
+    <link rel="stylesheet" href="/bootstrap-4.6.2-dist/css/bootstrap.css">
+    <script src="/bootstrap-4.6.2-dist/js/jquery-3.6.4.js"></script>
+    <script src="/bootstrap-4.6.2-dist/js/bootstrap.js"></script>
+    <title>FILM PROJECT</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <!-- Dòng 1 (col-12)-->
+        <div class="row row_head">
+            <div class="col-12">
+                <h1>QUẢN LÝ NHÂN VIÊN</h1>
+            </div>
+        </div>
+
+        <!-- Dòng 2 (col-2, col-10) -->
+        <div class="row row_body vh-100">
+            <!-- Cột bên trái (col-2) -->
+            <div class="col-2 leftBar">
+                <button class="btn btn-primary btnMovie"><a href="/index.html">Quản lý phim</a></button>
+                <button class="btn btn-primary btnSeat"><a href="/seat.html">Quản lý chỗ ngồi</a></button>
+                <button class="btn btn-primary btnStaff"><a href="/staff.html">Quản lý nhân viên</a></button>
+            </div>
+
+            <!-- Cột bên phải (col-10)-->
+            <div class="col-10">
+                <!-- Dòng thứ 1-->
+                <div class="row row_1 mb-4">
+                    <div class="col-md-3">
+                        <button class="btn btn-success" data-target="#employeeManagementModal" data-toggle="modal">
+                            Tạo
+                        </button>
+                    </div>
+                    <div class="col-md-9 d-flex">
+                        <input type="text" class="form-control mr-2" placeholder="Tìm kiếm phim...">
+                        <button class="btn btn-info">Tìm kiếm</button>
+                    </div>
+                </div>
+                <!-- Dòng thứ 2-->
+                <div class="row">
+                    <div class="col">
+                        <table class="table" id="inputtable">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Tên Nhân Viên</th>
+                                    <th>Vai Trò</th>
+                                    <th>Thao Tác</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Dữ liệu phim sẽ được thêm từ bàn phím qua file javascript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
+        aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" data-backdrop="static">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">Đăng nhập</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="username">Tên đăng nhập:</label>
+                            <input type="text" class="form-control" id="username"
+                                placeholder="Nhập tên đăng nhập của bạn">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Mật khẩu:</label>
+                            <input type="password" class="form-control" id="password"
+                                placeholder="Nhập mật khẩu của bạn">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Đăng nhập</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Staff Modal -->
+    <!-- Button trigger modal -->
+<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#employeeManagementModal">
+    Quản lý nhân viên
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="employeeManagementModal" tabindex="-1" role="dialog" aria-labelledby="employeeManagementModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="employeeManagementModalLabel">Quản lý nhân viên</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="employeeID">ID nhân viên:</label>
+              <input type="text" class="form-control" id="employeeID" placeholder="Nhập ID nhân viên">
+            </div>
+            <div class="form-group">
+              <label for="employeeName">Tên nhân viên:</label>
+              <input type="text" class="form-control" id="employeeName" placeholder="Nhập tên nhân viên">
+            </div>
+            <div class="form-group">
+              <label for="employeeRole">Vai trò:</label>
+              <select class="form-control" id="employeeRole">
+                <option>Quản lý</option>
+                <option>Nhân viên bán vé</option>
+                <option>Nhân viên kỹ thuật</option>
+                <option>Nhân viên vệ sinh</option>
+              </select>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+          <button type="button" id="btn_save" class="btn btn-primary">Lưu thay đổi</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+
+
+
+
+    <script src="/bootstrap-4.6.2-dist/js/staff.js"></script>
+</body>
+
+</html>

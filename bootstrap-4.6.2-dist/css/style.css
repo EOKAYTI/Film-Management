@@ -1,0 +1,44 @@
+/* Dòng 1 Menu */
+.row_head {
+    background-color: #3C8DBC;
+    color: white;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Dòng 2 Body */
+
+/* Dòng 2, cột trái(2)*/
+.row_body .col-2 {
+    background-color: #222D32;
+}
+
+.row_body .btn-primary,
+.row_body .btn-secondary {
+    margin: 20px 0;
+}
+
+/* Dòng 2, cột phải(10) */
+.col-10 .row_1 {
+    margin: 20px 0;
+    background-color: white;
+}
+
+.form-control {
+    align-items: center;
+}
+
+.btnMovie a,
+.btnSeat a,
+.btnStaff a{
+    color: white;
+
+}
+
+.btnMovie :hover,
+.btnSeat :hover,
+.btnStaff :hover{
+    text-decoration: none;
+    color: red;
+
+}
