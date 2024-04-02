@@ -33,14 +33,18 @@
             <div class="col-10">
                 <!-- Dòng thứ 1-->
                 <div class="row row_1 mb-4">
-                    <div class="col-md-3">
-                        <button class="btn btn-success" data-target="#employeeManagementModal" data-toggle="modal">
+                    <div class="col-md-6">
+                        <button class="btn btn-success" data-target="#mainModal" data-toggle="modal">
                             Tạo
                         </button>
                     </div>
-                    <div class="col-md-9 d-flex">
-                        <input type="text" class="form-control mr-2" placeholder="Tìm kiếm phim...">
-                        <button class="btn btn-info">Tìm kiếm</button>
+                    <div class="col-md-6 d-flex">
+                        <div class="col-md-7 d-flex">
+                            <input type="text" class="form-control mr-2" placeholder="Tìm kiếm phim...">
+                        </div>
+                        <div class="col-md-3">
+                            <button class="btn btn-info">Tìm kiếm</button>
+                        </div>
                     </div>
                 </div>
                 <!-- Dòng thứ 2-->
@@ -94,51 +98,47 @@
             </div>
         </div>
     </div>
-    <!-- Staff Modal -->
-    <!-- Button trigger modal -->
-<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#employeeManagementModal">
-    Quản lý nhân viên
-  </button>
-  
-  <!-- Modal -->
-  <div class="modal fade" id="employeeManagementModal" tabindex="-1" role="dialog" aria-labelledby="employeeManagementModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="employeeManagementModalLabel">Quản lý nhân viên</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="form-group">
-              <label for="employeeID">ID nhân viên:</label>
-              <input type="text" class="form-control" id="employeeID" placeholder="Nhập ID nhân viên">
+
+    <!-- Modal -->
+    <div class="modal fade" id="employeeManagementModal" tabindex="-1" role="dialog"
+        aria-labelledby="employeeManagementModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="employeeManagementModalLabel">Quản lý nhân viên</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="employeeID">ID nhân viên:</label>
+                            <input type="text" class="form-control" id="employeeID" placeholder="Nhập ID nhân viên">
+                        </div>
+                        <div class="form-group">
+                            <label for="employeeName">Tên nhân viên:</label>
+                            <input type="text" class="form-control" id="employeeName" placeholder="Nhập tên nhân viên">
+                        </div>
+                        <div class="form-group">
+                            <label for="employeeRole">Vai trò:</label>
+                            <select class="form-control" id="employeeRole">
+                                <option>Quản lý</option>
+                                <option>Nhân viên bán vé</option>
+                                <option>Nhân viên kỹ thuật</option>
+                                <option>Nhân viên vệ sinh</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                    <button type="button" id="btn_save" class="btn btn-primary">Lưu thay đổi</button>
+                </div>
             </div>
-            <div class="form-group">
-              <label for="employeeName">Tên nhân viên:</label>
-              <input type="text" class="form-control" id="employeeName" placeholder="Nhập tên nhân viên">
-            </div>
-            <div class="form-group">
-              <label for="employeeRole">Vai trò:</label>
-              <select class="form-control" id="employeeRole">
-                <option>Quản lý</option>
-                <option>Nhân viên bán vé</option>
-                <option>Nhân viên kỹ thuật</option>
-                <option>Nhân viên vệ sinh</option>
-              </select>
-            </div>
-          </form>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-          <button type="button" id="btn_save" class="btn btn-primary">Lưu thay đổi</button>
-        </div>
-      </div>
     </div>
-  </div>
-  
+
 
 
 
