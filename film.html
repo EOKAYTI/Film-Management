@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/bootstrap-4.6.2-dist/css/seat.css">
+    <link rel="stylesheet" href="/bootstrap-4.6.2-dist/css/style.css">
     <link rel="stylesheet" href="/bootstrap-4.6.2-dist/css/bootstrap.css">
     <script src="/bootstrap-4.6.2-dist/js/jquery-3.6.4.js"></script>
     <script src="/bootstrap-4.6.2-dist/js/bootstrap.js"></script>
@@ -16,7 +16,7 @@
         <!-- Dòng 1 (col-12)-->
         <div class="row row_head">
             <div class="col-12">
-                <h1>QUẢN LÝ CHỖ NGỒI</h1>
+                <h1>QUẢN LÝ PHIM</h1>
             </div>
         </div>
 
@@ -34,7 +34,7 @@
                 <!-- Dòng thứ 1-->
                 <div class="row row_1 mb-4">
                     <div class="col-md-6">
-                        <button class="btn btn-success" data-target="#seatManagementModal" data-toggle="modal">
+                        <button class="btn btn-success" data-target="#mainModal" data-toggle="modal">
                             Tạo
                         </button>
                     </div>
@@ -54,27 +54,24 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Số chỗ ngồi</th>
-                                    <th>Loại chỗ</th>
-                                    <th>Tình trạng chỗ ngồi</th>
-                                    <th>Giá vé</th>
+                                    <th>Tên Phim</th>
+                                    <th>Ngày chiếu</th>
+                                    <th>Thể loại</th>
                                     <th>Thao tác</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>100</td>
-                                        <td>Ghế VIP</td>
-                                        <td>Đã đặt</td>
-                                        <td>75.000</td>
-                                        <td><button class='btn btn-primary editBtn'>Edit</button> 
-                                            <button class='btn btn-danger deleteBtn'>Delete</button>
-                                        </td>
-                                    </tr>
-                                </tbody>
+                                <!-- Dữ liệu phim sẽ được thêm từ bàn phím qua file javascript -->
+                                <tr>
+                                    <td>1</td>
+                                    <td>Kiểu Nữ Và Đại Gia</td>
+                                    <td>04/02/2024</td>
+                                    <td>Lãng mạn</td>
+                                    <td><button class='btn btn-primary editBtn'>Edit</button> 
+                                        <button class='btn btn-danger deleteBtn'>Delete</button>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -83,7 +80,7 @@
         </div>
     </div>
 
-    <!-- Login Modal -->
+    <!-- Login Modal
     <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
         aria-hidden="true" data-backdrop="static">
         <div class="modal-dialog" role="document">
@@ -111,60 +108,60 @@
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- Seat Modal -->
-    <div class="modal fade" id="seatManagementModal" tabindex="-1" role="dialog"
-        aria-labelledby="seatManagementModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+    </div> -->
+    <!-- Main Modal -->
+    <div class="modal" id="mainModal">
+        <div class="modal-dialog">
             <div class="modal-content">
+                <!-- Modal Header -->
                 <div class="modal-header">
-                    <h5 class="modal-title" id="seatManagementModalLabel">Quản lý chỗ ngồi</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <h5 class="modal-title" id="basicModalLabel">Tạo phim mới</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+                <!-- Modal Body -->
                 <div class="modal-body">
                     <form>
                         <div class="form-group">
-                            <label for="seatID">ID chỗ ngồi:</label>
-                            <input type="text" class="form-control" id="seatID" placeholder="Nhập ID chỗ ngồi">
+                            <label for="movieId">ID</label>
+                            <input type="text" class="form-control" id="movieId" placeholder="Nhập ID">
                         </div>
                         <div class="form-group">
-                            <label for="seatNumber">Số chỗ ngồi:</label>
-                            <input type="number" class="form-control" id="seatNumber" placeholder="Nhập số chỗ ngồi">
+                            <label for="movieName">Tên Phim</label>
+                            <input type="text" class="form-control" id="movieName" placeholder="Nhập tên phim">
                         </div>
                         <div class="form-group">
-                            <label for="seatType">Loại chỗ ngồi:</label>
-                            <select class="form-control" id="seatType">
-                                <option>Ghế thường</option>
-                                <option>Ghế VIP</option>
-                                <option>Ghế hạng sang</option>
+                            <label for="releaseDate">Ngày chiếu</label>
+                            <input type="date" class="form-control" id="releaseDate">
+                        </div>
+                        <div class="form-group">
+                            <label for="genre">Thể loại</label>
+                            <select class="form-control" id="genre">
+                                <option value="">Chọn thể loại</option>
+                                <option value="Hành động">Hành động</option>
+                                <option value="Hài kịch">Hài kịch</option>
+                                <option value="Drama">Drama</option>
+                                <option value="Lãng mạn">Lãng mạn</option>
+                                <!-- Thêm lựa chọn thể loại tại đây -->
                             </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="seatStatus">Tình trạng chỗ ngồi:</label>
-                            <select class="form-control" id="seatStatus">
-                                <option>Trống</option>
-                                <option>Đã đặt</option>
-                                <option>Đang sử dụng</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="seatPrice">Giá vé:</label>
-                            <input type="text" class="form-control" id="seatPrice" placeholder="Nhập giá vé">
                         </div>
                     </form>
                 </div>
+                <!-- Modal Footer -->
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                    <button type="button" id="btn_save" class="btn btn-primary">Lưu thay đổi</button>
+                    <button type="button" id="btn_save" class="btn btn-success">Lưu thay đổi</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="/bootstrap-4.6.2-dist/js/seat.js"></script>
+
+
+
+
+    <script src="/bootstrap-4.6.2-dist/js/film.js"></script>
 </body>
 
 </html>

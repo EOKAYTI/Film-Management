@@ -24,7 +24,7 @@
         <div class="row row_body vh-100">
             <!-- Cột bên trái (col-2) -->
             <div class="col-2 leftBar">
-                <button class="btn btn-primary btnMovie"><a href="/index.html">Quản lý phim</a></button>
+                <button class="btn btn-primary btnMovie"><a href="/film.html">Quản lý phim</a></button>
                 <button class="btn btn-primary btnSeat"><a href="/seat.html">Quản lý chỗ ngồi</a></button>
                 <button class="btn btn-primary btnStaff"><a href="/staff.html">Quản lý nhân viên</a></button>
             </div>
@@ -34,7 +34,7 @@
                 <!-- Dòng thứ 1-->
                 <div class="row row_1 mb-4">
                     <div class="col-md-6">
-                        <button class="btn btn-success" data-target="#mainModal" data-toggle="modal">
+                        <button class="btn btn-success" data-target="#employeeManagementModal" data-toggle="modal">
                             Tạo
                         </button>
                     </div>
@@ -61,6 +61,12 @@
                             </thead>
                             <tbody>
                                 <!-- Dữ liệu phim sẽ được thêm từ bàn phím qua file javascript -->
+                                <td>1</td>
+                                <td>Nguyễn Văn Lượng</td>
+                                <td>Nhân viên bán vé</td>
+                                <td><button class='btn btn-primary editBtn'>Edit</button> 
+                                    <button class='btn btn-danger deleteBtn'>Delete</button>
+                                </td>
                             </tbody>
                         </table>
                     </div>
