@@ -25,6 +25,7 @@
             <!-- Cột bên trái (col-2) -->
             <div class="col-2 leftBar">
                 <button class="btn btn-primary btnMovie"><a href="/film.html">Quản lý phim</a></button>
+                <button class="btn btn-primary btnMovie"><a href="/ticket.html">Quản lý đặt vé</a></button>
                 <button class="btn btn-primary btnSeat"><a href="/seat.html">Quản lý chỗ ngồi</a></button>
                 <button class="btn btn-primary btnStaff"><a href="/staff.html">Quản lý nhân viên</a></button>
             </div>
@@ -34,7 +35,7 @@
                 <!-- Dòng thứ 1-->
                 <div class="row row_1 mb-4">
                     <div class="col-md-6">
-                        <button class="btn btn-success" data-target="#mainModal" data-toggle="modal">
+                        <button class="btn btn-success" data-target="#bookingModal" data-toggle="modal">
                             Tạo
                         </button>
                     </div>
@@ -53,21 +54,18 @@
                         <table class="table" id="inputtable">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Tên Phim</th>
-                                    <th>Ngày chiếu</th>
-                                    <th>Thể loại</th>
+                                    <th>Tên</th>
+                                    <th>Email</th>
+                                    <th>Số lượng vé</th>
                                     <th>Thao tác</th>
-                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <!-- Dữ liệu phim sẽ được thêm từ bàn phím qua file javascript -->
                                 <tr>
-                                    <td>1</td>
-                                    <td>Kiểu Nữ Và Đại Gia</td>
-                                    <td>04/02/2024</td>
-                                    <td>Lãng mạn</td>
+                                    <td>Lê Đức Thọ</td>
+                                    <td>thole23@gmail.com</td>
+                                    <td>2</td>
                                     <td><button class='btn btn-primary editBtn'>Edit</button> 
                                         <button class='btn btn-danger deleteBtn'>Delete</button>
                                     </td>
@@ -109,59 +107,46 @@
             </div>
         </div>
     </div> -->
-    <!-- Main Modal -->
-    <div class="modal" id="mainModal">
+    <!-- Booking Modal -->
+    <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h5 class="modal-title" id="basicModalLabel">Tạo phim mới</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <!-- Modal Body -->
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="movieId">ID</label>
-                            <input type="text" class="form-control" id="movieId" placeholder="Nhập ID">
-                        </div>
-                        <div class="form-group">
-                            <label for="movieName">Tên Phim</label>
-                            <input type="text" class="form-control" id="movieName" placeholder="Nhập tên phim">
-                        </div>
-                        <div class="form-group">
-                            <label for="releaseDate">Ngày chiếu</label>
-                            <input type="date" class="form-control" id="releaseDate">
-                        </div>
-                        <div class="form-group">
-                            <label for="genre">Thể loại</label>
-                            <select class="form-control" id="genre">
-                                <option value="">Chọn thể loại</option>
-                                <option value="Hành động">Hành động</option>
-                                <option value="Hài kịch">Hài kịch</option>
-                                <option value="Drama">Drama</option>
-                                <option value="Lãng mạn">Lãng mạn</option>
-                                <!-- Thêm lựa chọn thể loại tại đây -->
-                            </select>
-                        </div>
-                    </form>
-                </div>
-                <!-- Modal Footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                    <button type="button" id="btn_save" class="btn btn-success">Lưu thay đổi</button>
-                </div>
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="bookingModalLabel">Booking Details</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <label for="name">Tên:</label>
+                  <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                  <label for="email">Email:</label>
+                  <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                  <label for="ticketQuantity">Số lượng vé:</label>
+                  <input type="number" class="form-control" id="ticketQuantity" name="ticketQuantity" required>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Book</button>
+            </div>
+          </div>
         </div>
-    </div>
+      </div>
+      
 
 
 
 
 
-    <script src="/bootstrap-4.6.2-dist/js/film.js"></script>
+    <script src="/bootstrap-4.6.2-dist/js/ticket.js"></script>
 </body>
 
 </html>
