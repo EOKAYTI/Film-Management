@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/bootstrap-4.6.2-dist/css/bootstrap.css">
     <script src="/bootstrap-4.6.2-dist/js/jquery-3.6.4.js"></script>
     <script src="/bootstrap-4.6.2-dist/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="./bootstrap-4.6.2-dist/css/style.css">
     <title>FILM PROJECT</title>
 </head>
 
@@ -55,6 +56,7 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
+                                    <th>Tên Đăng nhập</th>
                                     <th>Tên Nhân Viên</th>
                                     <th>Vai Trò</th>
                                     <th>Thao Tác</th>
@@ -63,10 +65,11 @@
                             <tbody>
                                 <!-- Dữ liệu phim sẽ được thêm từ bàn phím qua file javascript -->
                                 <td>1</td>
+                                <td>nguyenvanluong</td>
                                 <td>Nguyễn Văn Lượng</td>
-                                <td>Nhân viên bán vé</td>
-                                <td><button class='btn btn-primary editBtn'>Edit</button> 
-                                    <button class='btn btn-danger deleteBtn'>Delete</button>
+                                <td>STAFF</td>
+                                <td><button class='btn btn-primary editBtn btn-action'>Edit</button> 
+                                    <button class='btn btn-danger deleteBtn btn-action'>Delete</button>
                                 </td>
                             </tbody>
                         </table>
@@ -145,12 +148,31 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="alert-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Thông báo</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div id="message-content" class="modal-body">
+              
+            </div>
+            <div class="modal-footer">
+              <button  type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
 
 
 
-
+<script src="./bootstrap-4.6.2-dist/js/jquery-3.7.1.min.js"></script>
+<script src="./bootstrap-4.6.2-dist/js/bootstrap.js"></script>
     <script src="/bootstrap-4.6.2-dist/js/staff.js"></script>
 </body>
 

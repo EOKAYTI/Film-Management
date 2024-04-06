@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/bootstrap-4.6.2-dist/css/bootstrap.css">
     <script src="/bootstrap-4.6.2-dist/js/jquery-3.6.4.js"></script>
     <script src="/bootstrap-4.6.2-dist/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="./bootstrap-4.6.2-dist/css/style.css">
     <title>FILM PROJECT</title>
 </head>
 
@@ -70,8 +71,8 @@
                                     <td>Kiểu Nữ Và Đại Gia</td>
                                     <td>04/02/2024</td>
                                     <td>Lãng mạn</td>
-                                    <td><button class='btn btn-primary editBtn'>Edit</button> 
-                                        <button class='btn btn-danger deleteBtn'>Delete</button>
+                                    <td><button class='btn btn-primary btn-action editBtn'>Edit</button> 
+                                        <button class='btn btn-danger btn-action deleteBtn'>Delete</button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -112,52 +113,26 @@
         </div>
     </div> -->
     <!-- Main Modal -->
-    <div class="modal" id="mainModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h5 class="modal-title" id="basicModalLabel">Tạo phim mới</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <!-- Modal Body -->
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="movieId">ID</label>
-                            <input type="text" class="form-control" id="movieId" placeholder="Nhập ID">
-                        </div>
-                        <div class="form-group">
-                            <label for="movieName">Tên Phim</label>
-                            <input type="text" class="form-control" id="movieName" placeholder="Nhập tên phim">
-                        </div>
-                        <div class="form-group">
-                            <label for="releaseDate">Ngày chiếu</label>
-                            <input type="date" class="form-control" id="releaseDate">
-                        </div>
-                        <div class="form-group">
-                            <label for="genre">Thể loại</label>
-                            <select class="form-control" id="genre">
-                                <option value="">Chọn thể loại</option>
-                                <option value="Hành động">Hành động</option>
-                                <option value="Hài kịch">Hài kịch</option>
-                                <option value="Drama">Drama</option>
-                                <option value="Lãng mạn">Lãng mạn</option>
-                                <!-- Thêm lựa chọn thể loại tại đây -->
-                            </select>
-                        </div>
-                    </form>
-                </div>
-                <!-- Modal Footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                    <button type="button" id="btn_save" class="btn btn-success">Lưu thay đổi</button>
-                </div>
-            </div>
+   <!-- Button trigger modal -->
+   <div class="modal fade" id="alert-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Thông báo</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
+        <div id="message-content" class="modal-body">
+          
+        </div>
+        <div class="modal-footer">
+          <button  type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+        </div>
+      </div>
     </div>
+  </div>
+
 
 
 
