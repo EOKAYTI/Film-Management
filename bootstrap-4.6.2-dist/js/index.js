@@ -1,7 +1,18 @@
 $(document).ready(function () {
-    $("#loginModal").modal('show');
+    // check login
+    let username = sessionStorage.getItem("username");
+    let bearerToken = sessionStorage.getItem("bearerToken");
+    if(username!=null&&username!=""){
+        // set username
+    }else{
+        window.location.href ="login.html";
+    }
+    $("#btn-create").on("click",function(){
+        $("#mainModal").modal("show");
+    })
 
-    $('#btn_save').click(function (e) {
+
+    $('#btn_save').on("click",function (e) {
         let id = $('#movieId').val();
         let name = $('#movieName').val();
         let releaseDate = $('#releaseDate').val();
