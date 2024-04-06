@@ -3,8 +3,8 @@ $(document).ready(function(){
     $("#btn-login").on("click",function(){
         let username = $("#username").val();
         let password = $("#password").val();
-        // let alertModal = $("#alert-modal");
-        // alertModal.modal("show");
+        let alertModal = $("#alert-modal");
+       
         let loginIsSuccess = false;
         let message ="";
         $.ajax({
@@ -45,22 +45,25 @@ $(document).ready(function(){
                 console.log(authenticationReturn.status);
                 if(authenticationReturn.status ==true){
                     console.log("status = true");
-                    sessionStorage.setItem("username",authenticationReturn.data.fullName);
-                    sessionStorage.setItem("bearerToken","Bearer "+authenticationReturn.message);
+                    localStorage.setItem("bearerToken","Bearer "+authenticationReturn.message);
                     loginIsSuccess = true;
                     message = `Đăng nhập thành công! Tự động chuyển hướng sau 3 giây!
                     `;
-                    alert(message);
-                    setTimeout(function(){
-                        window.location.href = "index.html";
-                    }, 2500);
+                    // alert(message);
                 }else{
                     message = "Tên đăng nhập hoặc mật khẩu không chính xác!";
-                    alert(message);
+                    // alert(message);
                 }
               }
             }
           });
+          $("#message-content").text(message);
+          alertModal.modal("show");
+          if(loginIsSuccess){
+            setTimeout(function(){
+              window.location.href = "index.html";
+          }, 2500);
+          }
 
     })
     
