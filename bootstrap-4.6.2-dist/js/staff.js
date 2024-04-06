@@ -106,11 +106,9 @@ $(document).ready(function () {
             console.log(docsReturn.status);
             if(docsReturn.status ==true){
                 console.log("status = true");
-                username = docsReturn.data;
-                // alert(message);
+                
             }else{
                 messageReturn = "";
-                // alert(message);
                 $("#message-content").text(messageReturn);
                 alertModal.modal("show");
             }
