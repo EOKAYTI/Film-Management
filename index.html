@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/bootstrap-4.6.2-dist/css/style.css">
+    <link rel="stylesheet" href="/bootstrap-4.6.2-dist/css/staff.css">
     <link rel="stylesheet" href="/bootstrap-4.6.2-dist/css/bootstrap.css">
     <script src="/bootstrap-4.6.2-dist/js/jquery-3.6.4.js"></script>
     <script src="/bootstrap-4.6.2-dist/js/bootstrap.js"></script>
@@ -17,7 +17,6 @@
         <!-- Dòng 1 (col-12)-->
         <div class="row row_head">
             <div class="col-12">
-                 
                 <h1>QUẢN LÝ PHIM</h1>
             </div>
         </div>
@@ -26,27 +25,32 @@
         <div class="row row_body vh-100">
             <!-- Cột bên trái (col-2) -->
             <div class="col-2 leftBar">
-                <button class="btn btn-primary btnMovie"><a href="/index.html">Quản lý phim</a></button>
-                <button class="btn btn-primary btnMovie"><a href="/ticket.html">Quản lý đặt vé</a></button>
-                <button class="btn btn-primary btnSeat"><a href="/seat.html">Quản lý chỗ ngồi</a></button>
-                <button class="btn btn-primary btnStaff"><a href="/staff.html">Quản lý nhân viên</a></button>
+                <button class="btn btn-primary nav-btn btnMovie"><a href="/category.html">Quản lý loại phim</a></button>
+                <button class="btn btn-primary nav-btn btnMovie"><a href="/index.html">Quản lý phim</a></button>
+                <button class="btn btn-primary nav-btn btnMovie"><a href="/ticket.html">Quản lý đặt vé</a></button>
+                <button class="btn btn-primary nav-btn btnSeat"><a href="/time.html">Quản lý thời gian</a></button>
+                <button class="btn btn-primary nav-btn btnStaff"><a href="/staff.html">Quản lý nhân viên</a></button>
             </div>
 
             <!-- Cột bên phải (col-10)-->
             <div class="col-10">
                 <!-- Dòng thứ 1-->
                 <div class="row row_1 mb-4">
+                    <div   class="col-md-12 info-login">
+                        Xin chào, <span class="username"></span>
+                        <button id="logout-btn" class="btn btn-danger  "> Đăng xuất</button>
+                    </div>
                     <div class="col-md-6">
-                        <button id="btn-create" class="btn btn-success">
+                        <button class="btn btn-success" id="create-button">
                             Tạo
                         </button>
                     </div>
                     <div class="col-md-6 d-flex">
                         <div class="col-md-7 d-flex">
-                            <input type="text" class="form-control mr-2" placeholder="Tìm kiếm phim...">
+                            <input type="text" id="complex-data" class="form-control mr-2" placeholder="Tìm kiếm loại phim...">
                         </div>
                         <div class="col-md-3">
-                            <button class="btn btn-info">Tìm kiếm</button>
+                            <button id="find-btn" class="btn btn-info">Tìm kiếm</button>
                         </div>
                     </div>
                 </div>
@@ -57,24 +61,26 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Tên Phim</th>
-                                    <th>Ngày chiếu</th>
-                                    <th>Thể loại</th>
+                                    <th>Loại phim</th>
+                                    <th>Tên phim</th>
+                                    <th>Giá vé</th>
+                                    <th>Ngày giờ chiếu</th>
+                                    <th>Số ghế</th>
                                     <th>Thao tác</th>
-                                    <th></th>
+
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="staff-table-content">
                                 <!-- Dữ liệu phim sẽ được thêm từ bàn phím qua file javascript -->
-                                <tr>
+                                <!-- <tr>
                                     <td>1</td>
-                                    <td>Kiểu Nữ Và Đại Gia</td>
-                                    <td>04/02/2024</td>
-                                    <td>Lãng mạn</td>
-                                    <td><button class='btn btn-primary btn-action editBtn'>Edit</button> 
-                                        <button class='btn btn-danger btn-action deleteBtn'>Delete</button>
+                                    <td>nguyenvanluong</td>
+                                    <td>Nguyễn Văn Lượng</td>
+                                    <td>STAFF</td>
+                                    <td><button class='btn btn-primary editBtn btn-action'>Edit</button> 
+                                        <button class='btn btn-danger deleteBtn btn-action'>Delete</button>
                                     </td>
-                                </tr>
+                                </tr> -->
                             </tbody>
                         </table>
                     </div>
@@ -83,8 +89,8 @@
         </div>
     </div>
 
-    <!-- Login Modal
-    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
+    <!-- Login Modal -->
+    <!-- <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
         aria-hidden="true" data-backdrop="static">
         <div class="modal-dialog" role="document">
             <div class="modal-content" data-backdrop="static">
@@ -112,34 +118,168 @@
             </div>
         </div>
     </div> -->
-    <!-- Main Modal -->
-   <!-- Button trigger modal -->
-   <div class="modal fade" id="alert-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Thông báo</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="employeeManagementModal" tabindex="-1" role="dialog"
+        aria-labelledby="employeeManagementModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="employeeManagementModalLabel">Tạo phim</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="create-form">
+                        <div class="form-group">
+                            <label for="employeeName">Loại phim</label>
+                            <select class="form-control" name="category" id="category">
+                                <option value="">Phim Kịch</option>
+                                <option value="">Phim Hài</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="employeeName">Tên phim</label>
+                            <input type="text" class="form-control" id="film-name" placeholder="Nhập tên phim...">
+                        </div>
+                        <div class="form-group">
+                            <label for="employeeName">Giá vé</label>
+                            <input type="number" class="form-control" id="price" placeholder="Nhập giá vé...">
+                        </div>
+                        <div class="form-group">
+                            <label for="employeeName">Ngày giờ chiếu</label>
+                            <select class="form-control" name="datetime" id="datetime">
+                                <option value="1">2024-03-15 10:00:00.0</option>
+                                <option value="1">2024-03-15 13:30:00.0</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="employeeName">Số ghế</label>
+                            <input type="number" class="form-control" id="seat-quantity" placeholder="Nhập số ghế...">
+                        </div>
+                        <div class="form-group" id="announce">
+                            
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                    <button type="button" id="btn_save" class="btn btn-primary">Lưu thay đổi</button>
+                </div>
+            </div>
         </div>
-        <div id="message-content" class="modal-body">
-          
-        </div>
-        <div class="modal-footer">
-          <button  type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+    </div>
+    <div class="modal fade" id="alert-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Thông báo</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div id="message-content" class="modal-body">
+              
+            </div>
+            <div class="modal-footer">
+              <button  type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+            </div>
+          </div>
         </div>
       </div>
+      <div class="modal fade" id="confirm-delete-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Xác Nhận</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div id="" class="modal-body">
+                Bạn có chắc muốn xóa không?
+            </div>
+            <div class="modal-footer">
+              <button  type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+              <button  type="button" id="confirm-delete-btn" class="btn btn-primary">Xác nhận</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="modifyEmployeeModal" tabindex="-1" role="dialog"
+        aria-labelledby="employeeManagementModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="employeeManagementModalLabel">Sửa tên loại phim</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="edit-form">
+                        <div class="form-group">
+                            <label for="employeeName">loại phim</label>
+                            <input type="text" class="form-control" id="edit" placeholder="Nhập loại phim...">
+                        </div>
+                        <div class="form-group announce" id="announce-edit">
+                            
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                    <button type="button" id="btn_save-edit" class="btn btn-primary">Lưu thay đổi</button>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
+    <div class="modal fade" id="alert-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Thông báo</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div id="message-content" class="modal-body">
+              
+            </div>
+            <div class="modal-footer">
+              <button  type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="alert-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Thông báo</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div id="message-content" class="modal-body">
+              
+            </div>
+            <div class="modal-footer">
+              <button  type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
 
 
 
-    <script src="./bootstrap-4.6.2-dist/js/jquery-3.7.1.min.js"></script>
-    <script src="./bootstrap-4.6.2-dist/js/bootstrap.js"></script>
-    <script src="bootstrap-4.6.2-dist/js/index.js"></script>
+<script src="./bootstrap-4.6.2-dist/js/jquery-3.7.1.min.js"></script>
+<script src="./bootstrap-4.6.2-dist/js/bootstrap.js"></script>
+    <script src="/bootstrap-4.6.2-dist/js/index.js"></script>
 </body>
 
 </html>
