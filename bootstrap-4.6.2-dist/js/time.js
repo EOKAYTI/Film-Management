@@ -7,8 +7,9 @@ var signined;
 var isSuccess = false;
 var idSelect;
 var lineSelect;
-var userId;
+var announce;
 function getBearerToken(){
+    announce = $("#announce");
   return localStorage.getItem("bearerToken");
 }
 function authorize(){
@@ -48,7 +49,6 @@ function authorize(){
       let authenticationReturn = JSON.parse(docs);
       if(authenticationReturn!=null){
         if(authenticationReturn.status ==true){
-          userId = authenticationReturn.data;
           if(authenticationReturn.data != 1){
             window.location.href = '403.html';
             return false;
@@ -146,7 +146,7 @@ function checkLogin(){
 function generateData(){
 
   $.ajax({
-    url: "http://localhost:8080/MovieTicketManagementVer3/services/AccountServiceImp",
+    url: "http://localhost:8080/MovieTicketManagementVer3/services/MovieTimeServiceImp",
     type: "POST",
     dataType: "xml",
     data: `<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:q0="http://imp.service" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -182,13 +182,12 @@ function generateData(){
         // console.log(docsReturn.status);
         if(docsReturn!=null){
             let tbody ="";
-            docsReturn.forEach(function(element){
+            docsReturn.data.forEach(function(element){
               
               tbody+=` <tr>
               <td>${element.id}</td>
-              <td>${element.username}</td>
-              <td>${element.fullName}</td>
-              <td>${element.role.name}</td>
+              <td>${element.time}</td>
+
               <td><button id="${element.id}" class='btn btn-primary editBtn btn-action'>Edit</button> 
                   <button id ="${element.id}" class='btn btn-danger deleteBtn btn-action'>Delete</button>
               </td>
@@ -219,70 +218,7 @@ function generateData(){
   }, 2500);
   }
 }
-function showRoleOpt(){
-  $.ajax({
-    url: "http://localhost:8080/MovieTicketManagementVer3/services/RoleServiceImp",
-    type: "POST",
-    dataType: "xml",
-    data: `<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:q0="http://imp.service" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <soapenv:Body>
-      <q0:getAllRole/>
-    </soapenv:Body>
-  </soapenv:Envelope>`,
-    contentType: "text/xml",
-    async: false,
-    headers: {
-      "SOAPAction": "",
-      "Authentication":getBearerToken()
-    },
-    statusCode: {
-      404: function() {
-          // Xử lý lỗi 404 (Not Found)
-          console.log("Lỗi 404 - Không tìm thấy trang");
-      },
-      401: function() {
-          // Xử lý lỗi 401 (Unauthorized)
-          console.log("Lỗi 401 - Không được phép truy cập");
-          signined = false;
-          messageReturn = "Vui lòng đăng nhập để tiếp tục!";
-      }
-  },
-    success: function(response) {
-    //    console.log(response);
-      docs= $(response).find("getAllRoleResponse").text();
-     
-      let docsReturn = JSON.parse(docs);
-      console.log(docsReturn);
 
-        // console.log(docsReturn.status);
-        if(docsReturn!=null){
-            let tbody =`<option value="">Vui lòng chọn vai trò</option>`;
-            docsReturn.forEach(function(element){
-              
-              tbody+=`
-              <option value="${element.id}">${element.name}</option>
-             `;
-            });
-            
-             $(".employee-role").html(tbody);
-
-            
-        }else{
-            messageReturn = "";
-            $("#message-content").text(messageReturn);
-            if(messageReturn!=""){
-              alertModal.modal("show");
-            }
-        }
-      
-    }
-  });
-  if(!signined){
-    setTimeout(function(){
-      window.location.href = "login.html";
-  }, 0);
-  }
-}
 $(document).ready(function () {
   if(checkLogin()){
     authorize();
@@ -299,20 +235,15 @@ $(document).ready(function () {
 
 
     $('#btn_save').click(function (e) {
-        let employeeName = $('#employee-name').val();
-        let username = $('#username').val();
-        let password = $('#password').val();
-        let rePassword = $('#re-password').val();
-        let employeeRole = $('#employee-role').val();
-        let announce = $("#announce");
+        let time = $('#time').val();
+        console.log("check time",time);
         // validating
         let isValid = false;
         let message = "";
-        if(employeeName==null||employeeName=="") message ="Tên nhân viên không được rỗng!";
-        else if(username==null||username=="") message ="Tên đăng nhập không được rỗng!";
-        else if(password==null||password=="") message ="Mật khẩu không được rỗng!";
-        else if(rePassword!=password) message ="Mật khẩu nhập lại không khớp!";
-        else if(employeeRole=="") message ="Vui lòng chọn vai trò";
+        if(time==null||time==""){
+             message ="Vui lòng điền thời gian";
+            //  console.log("not valid")
+        }
         else{
             isValid = true;
             message ="";
@@ -323,22 +254,15 @@ $(document).ready(function () {
         if(isValid){
             // insert to server
             $.ajax({
-              url: "http://localhost:8080/MovieTicketManagementVer3/services/AccountServiceImp",
+              url: "http://localhost:8080/MovieTicketManagementVer3/services/MovieTimeServiceImp",
               type: "POST",
               dataType: "xml",
               data: `<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:q0="http://imp.service" xmlns:q1="http://model" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
               <soapenv:Body>
                 <q0:create>
                   <q0:model>
-                    <q1:fullName>${employeeName}</q1:fullName>
                     <q1:id>0</q1:id>
-                    <q1:password>${password}</q1:password>
-                    <q1:role>
-                      <q1:description>0</q1:description>
-                      <q1:id>${employeeRole}</q1:id>
-                      <q1:name>0</q1:name>
-                    </q1:role>
-                    <q1:username>${username}</q1:username>
+                    <q1:time>${time}</q1:time>
                   </q0:model>
                 </q0:create>
               </soapenv:Body>
@@ -378,7 +302,7 @@ $(document).ready(function () {
               }
             });
             if(isSuccess){
-              $("#message-content").text("Tạo nhân viên thành công!");
+              $("#message-content").text("Tạo thời gian thành công!");
               generateData();
               $("#create-form").trigger('reset')
             }else{
@@ -408,10 +332,9 @@ $(document).ready(function () {
     $("#confirm-delete-btn").on("click",function(){
       $("#confirm-delete-modal").modal("hide");
       let isSuccess = false;
-      if(idSelect!=userId){
-        messageReturn = "";
+      messageReturn = "";
       $.ajax({
-        url: "http://localhost:8080/MovieTicketManagementVer3/services/AccountServiceImp",
+        url: "http://localhost:8080/MovieTicketManagementVer3/services/MovieTimeServiceImp",
         type: "POST",
         dataType: "xml",
         data: `<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:q0="http://imp.service" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -441,7 +364,7 @@ $(document).ready(function () {
       },
         success: function(response) {
         //    console.log(response);
-          docs= $(response).find("deleteByIdReturn").text();
+          docs= $(response).find("deleteByIdResponse").text();
          
           let docsReturn = JSON.parse(docs);
           console.log(docsReturn);
@@ -466,21 +389,13 @@ $(document).ready(function () {
        lineSelect.closest('tr').remove(); // Xóa hàng gần nhất chứa nút được click
                 
       }else{
-        messageReturn = "Xóa thất bại, Nhân viên không tồn tại!";
+        messageReturn = "Xóa thất bại, thời gian không tồn tại!";
         generateData();
       }
       $("#message-content").text(messageReturn);
                 if(messageReturn!=""){
                   alertModal.modal("show");
-         }
-      }else{
-        messageReturn ="Bạn không thể xóa tài khoản của chính bạn.";
-        $("#message-content").text(messageReturn);
-                if(messageReturn!=""){
-                  alertModal.modal("show");
-         }
-      }
-      
+                }
       //
     })
 
@@ -490,38 +405,29 @@ $(document).ready(function () {
     checkLogin();
     idEdit = $(this).attr("id");
     console.log(idEdit)
-    showRoleOpt();
     $("#modifyEmployeeModal").modal('show');
       // Thường sẽ bao gồm việc lấy dữ liệu hàng hiện tại và điền vào form để chỉnh sửa
   });
 
   $("#btn_save-edit").on('click',function(){
     let message = "";
-     let employeeNameEdit = $("#employee-edit-name").val();
-     let employeeRoleEdit = $("#employee-edit-role").val();
-     if(employeeNameEdit=="") message = "Tên nhân viên không được rỗng!";
-     else if(employeeRoleEdit=="") message= "Vui lòng chọn vai trò";
+     let timeEdit = $("#time-edit").val();
+     if(timeEdit=="") message = "Vui lòng điền thời gian";
+     console.log("check id:",idEdit);
       $("#announce-edit").text(message);
       if(message==""){
         // valid
         $("#modifyEmployeeModal").modal('hide');
         $.ajax({
-          url: "http://localhost:8080/MovieTicketManagementVer3/services/AccountServiceImp",
+          url: "http://localhost:8080/MovieTicketManagementVer3/services/MovieTimeServiceImp",
           type: "POST",
           dataType: "xml",
           data: `<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:q0="http://imp.service" xmlns:q1="http://model" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <soapenv:Body>
             <q0:updateById>
               <q0:model>
-                <q1:fullName>${employeeNameEdit}</q1:fullName>
                 <q1:id>${idEdit}</q1:id>
-                <q1:password>123456</q1:password>
-                <q1:role>
-                  <q1:description>0</q1:description>
-                  <q1:id>${employeeRoleEdit}</q1:id>
-                  <q1:name>0</q1:name>
-                </q1:role>
-                <q1:username>nguyen</q1:username>
+                <q1:time>${timeEdit}</q1:time>
               </q0:model>
             </q0:updateById>
           </soapenv:Body>
@@ -544,7 +450,7 @@ $(document).ready(function () {
         },
           success: function(response) {
           //    console.log(response);
-            docs= $(response).find("updateByIdResponse").text();
+            docs= $(response).find("updateByIdReturn").text();
            
             let docsReturn = JSON.parse(docs);
             console.log(docsReturn);
@@ -565,7 +471,7 @@ $(document).ready(function () {
           $("#edit-form").trigger("reset");
           generateData();
         }else{
-          messageReturn = "Thất bại, không tìm thấy nhân viên này!";
+          messageReturn = "Thất bại, không tìm thấy!";
         }
         $("#message-content").text(messageReturn);
                 if(messageReturn!=""){
@@ -576,26 +482,24 @@ $(document).ready(function () {
   })
 
     $("#create-button").on("click",function(){
-    
+      if(checkLogin()){
+        $("#employeeManagementModal").modal('show');
+      }
       
-     if(checkLogin()){
-      showRoleOpt();
-      $("#employeeManagementModal").modal('show');
-     }
     })
     $("#find-btn").on("click",function(){
         // alert("find function actived")
         let complexData = $("#complex-data").val();
         console.log("check complexData:",complexData);
         $.ajax({
-          url: "http://localhost:8080/MovieTicketManagementVer3/services/AccountServiceImp",
+          url: "http://localhost:8080/MovieTicketManagementVer3/services/MovieTimeServiceImp",
           type: "POST",
           dataType: "xml",
           data: `<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:q0="http://imp.service" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <soapenv:Body>
-            <q0:getByComplexData>
+            <q0:findByComplexData>
               <q0:data>${complexData}</q0:data>
-            </q0:getByComplexData>
+            </q0:findByComplexData>
           </soapenv:Body>
         </soapenv:Envelope>`,
           contentType: "text/xml",
@@ -618,7 +522,7 @@ $(document).ready(function () {
         },
           success: function(response) {
           //    console.log(response);
-            docs= $(response).find("getByComplexDataResponse").text();
+            docs= $(response).find("findByComplexDataResponse").text();
             console.log("docs:",docs);
       
             let docsReturn = JSON.parse(docs);
@@ -630,9 +534,8 @@ $(document).ready(function () {
                   docsReturn.data.forEach(function(element){
                     tbody+=` <tr>
                     <td>${element.id}</td>
-                    <td>${element.username}</td>
-                    <td>${element.fullName}</td>
-                    <td>${element.role.name}</td>
+                    <td>${element.time}</td>
+      
                     <td><button id="${element.id}" class='btn btn-primary editBtn btn-action'>Edit</button> 
                         <button id ="${element.id}" class='btn btn-danger deleteBtn btn-action'>Delete</button>
                     </td>

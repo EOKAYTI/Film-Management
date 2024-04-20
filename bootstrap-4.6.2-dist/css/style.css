@@ -45,3 +45,14 @@
 .btn-action {
     margin: 0px !important;
 }
+.nav-btn{
+    width: 180px;
+}
+.info-login{
+    text-align: right;
+    font-size: x-large;
+    font-weight: 600;
+    color: blue;
+    margin-bottom: 8px;
+    padding: 0px 10px;
+}

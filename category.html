@@ -17,7 +17,7 @@
         <!-- Dòng 1 (col-12)-->
         <div class="row row_head">
             <div class="col-12">
-                <h1>QUẢN LÝ ĐẶT VÉ</h1>
+                <h1>QUẢN LÝ LOẠI PHIM</h1>
             </div>
         </div>
 
@@ -47,7 +47,7 @@
                     </div>
                     <div class="col-md-6 d-flex">
                         <div class="col-md-7 d-flex">
-                            <input type="text" id="complex-data" class="form-control mr-2" placeholder="Tìm kiếm vé phim...">
+                            <input type="text" id="complex-data" class="form-control mr-2" placeholder="Tìm kiếm loại phim...">
                         </div>
                         <div class="col-md-3">
                             <button id="find-btn" class="btn btn-info">Tìm kiếm</button>
@@ -61,13 +61,8 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Tên phim</th>
-                                    <th>Tên khách hàng</th>
-                                    <th>Ngày giờ chiếu</th>
-                                    <th>Giá vé</th>
-                                    <th>Vị trí ghế</th>
-                                    <th>Thao tác</th>
-
+                                    <th>Tên loại phim</th>
+                                    <th>Thao Tác</th>
                                 </tr>
                             </thead>
                             <tbody id="staff-table-content">
@@ -125,7 +120,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="employeeManagementModalLabel">Tạo Vé Phim</h5>
+                    <h5 class="modal-title" id="employeeManagementModalLabel">Tạo loại phim</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -133,27 +128,8 @@
                 <div class="modal-body">
                     <form id="create-form">
                         <div class="form-group">
-                            <label for="employeeName">Tên phim - Ngày giờ chiếu</label>
-                            <select class="form-control" name="film-name" id="film-name">
-                                <option value="">Phim 1</option>
-                                <option value="">Phim 2</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="employeeName">Tên khách hàng</label>
-                            <input type="text" class="form-control" id="customer-name" placeholder="Nhập tên khách hàng...">
-                        </div>
-                        <div class="form-group">
-                            <label for="employeeName">Giá vé</label>
-                            <input type="number" class="form-control" id="price" readonly>
-                        </div>
-                       
-                        <div class="form-group">
-                            <label for="employeeName">Vị trí ghế</label>
-                            <select class="form-control" name="seat" id="seat">
-                                <!-- <option value="">ghế 1</option>
-                                <option value="">ghế 2</option> -->
-                            </select>
+                            <label for="employeeName">Loại phim</label>
+                            <input type="text" class="form-control" id="category-name" placeholder="Nhập loại phim...">
                         </div>
                         <div class="form-group" id="announce">
                             
@@ -276,7 +252,7 @@
 
 <script src="./bootstrap-4.6.2-dist/js/jquery-3.7.1.min.js"></script>
 <script src="./bootstrap-4.6.2-dist/js/bootstrap.js"></script>
-    <script src="/bootstrap-4.6.2-dist/js/ticket.js"></script>
+    <script src="/bootstrap-4.6.2-dist/js/category.js"></script>
 </body>
 
 </html>
